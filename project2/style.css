@@ -1,0 +1,124 @@
+/* Resetting default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-image: linear-gradient(to bottom, #85a4cb, #f9f9f9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  main {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+    background-image: linear-gradient(to bottom, #347ad669, #c56969b6);
+  }
+  
+  .search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+   
+    
+  }
+  
+  input[type="search"] {
+    flex: 1;
+    padding: 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 90%;
+    margin-right: 10px;
+    
+  }
+  
+  button {
+    padding: 10px 20px;
+    margin-top: 2%;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: auto;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  .weather-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .weather-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 10px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .weather-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.15);
+  }
+  
+  .weather-card img {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 10px;
+  }
+  
+  .weather-card h2 {
+    margin-bottom: 5px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .weather-card h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #555;
+  }
+  
+  @media screen and (max-width: 600px) {
+    input[type="search"] {
+      width: 80%;
+    }
+  }
+  
