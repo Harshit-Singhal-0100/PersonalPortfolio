@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Application</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -15,28 +13,17 @@
     </header>
     <main>
         <div class="search-container">
-            <form id="searchForm" aria-label="Search for weather by city">
-                <input type="search" id="search" placeholder="Search by city name" required aria-label="City name">
-                <button type="submit" aria-label="Search">Search</button>
+            <form id="searchForm">
+                <input type="search" id="search" placeholder="Search by city name" required>
+                <button type="submit">Search</button>
             </form>
-            <button id="tempUnitToggle" aria-label="Toggle temperature unit">°C / °F</button>
-            <button id="geolocate" aria-label="Get current location">📍</button>
+            <button id="tempUnitToggle">°C / °F</button>
         </div>
         <div class="weather-container" id="weather">
             <!-- Weather details will appear here -->
         </div>
-        <div id="loading" class="loading" role="alert">Loading...</div> <!-- Loading animation -->
-        <div id="weather-alerts" class="weather-alerts">
-            <!-- Weather alerts will appear here -->
-        </div>
-        <div id="weather-news" class="weather-news">
-            <!-- Weather news will appear here -->
-        </div>
-        <button id="share" aria-label="Share weather information">Share</button>
+        <div id="loading" class="loading">Loading...</div> <!-- Loading animation -->
     </main>
-    <footer>
-        <p>&copy; 2023 Weather App. All rights reserved.</p>
-    </footer>
     <script src="app.js"></script>
 </body>
 </html>
