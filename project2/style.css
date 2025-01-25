@@ -1,4 +1,3 @@
-
 /* Resetting default styles */
 * {
     margin: 0;
@@ -39,7 +38,6 @@ main {
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 20px;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
-    background-image: linear-gradient(to bottom, #347ad669, #c56969b6);
     animation: slideUp 1s ease-out;
 }
 
@@ -49,16 +47,22 @@ main {
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
+    gap: 10px;
 }
 
 input[type="search"] {
     flex: 1;
-    padding: 20px;
+    padding: 15px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
     width: 90%;
-    margin-right: 10px;
+    transition: border-color 0.3s;
+}
+
+input[type="search"]:focus {
+    border-color: #4CAF50;
+    outline: none;
 }
 
 button {
@@ -107,12 +111,6 @@ button:hover {
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
 }
 
-.weather-card img {
-    width: 70px;
-    height: 70px;
-    margin-bottom: 10px;
-}
-
 .weather-card h2 {
     margin-bottom: 5px;
     font-size: 28px;
@@ -151,6 +149,15 @@ button:hover {
     100% {
         opacity: 0.6;
     }
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: #777;
 }
 
 /* Responsive Design for smaller screens */
@@ -206,4 +213,3 @@ button:hover {
         transform: scale(1);
     }
 }
-
