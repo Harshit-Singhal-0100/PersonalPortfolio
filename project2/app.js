@@ -146,4 +146,46 @@ const fetchWeatherAlerts = async (city) => {
         } else {
             weatherAlerts.innerHTML = `<p>No weather alerts for this location.</p>`;
         }
-    } 
+    } catch (error) {
+        weatherAlerts.innerHTML = `<p>Error fetching weather alerts.</p>`;
+        console.error('Error fetching weather alerts:', error);
+    }
+};
+
+const fetchWeatherNews = async () => {
+    // Fetch weather news
+    try {
+        const url = `https://newsapi.org/v2/everything?q=weather&apiKey=YOUR_NEWS_API_KEY`;
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.articles && data.articles.length > 0) {
+            weatherNews.innerHTML = data.articles.slice(0, 5).map(article => `
+                <div class="news-article">
+                    <h4>${article.title}</h4>
+                    <p>${article.description}</p>
+                    <a href="${article.url}" target="_blank">Read more</a>
+                </div>
+            `).join('');
+        } else {
+            weatherNews.innerHTML = `<p>No recent weather news available.</p>`;
+        }
+    } catch (error) {
+        weatherNews.innerHTML = `<p>Error fetching weather news.</p>`;
+        console.error('Error fetching weather news:', error);
+    }
+};
+
+shareBtn.addEventListener('click', () => {
+    if (navigator.share) {
+        const currentCity = search.value;
+        const weatherInfo = weather.innerText;
+        navigator.share({
+            title: 'Weather App',
+            text: `Weather in ${currentCity}: ${weatherInfo}`,
+            url: window.location.href
+        }).catch((error) => console.error('Error sharing:', error));
+    } else {
+        alert('Web Share API is not supported in this browser.');
+    }
+});
