@@ -40,7 +40,11 @@ const getWeather = async (city) => {
         weatherCard.classList.add('weather-card');
         weatherCard.setAttribute('data-temperature', data.main.temp > 30 ? 'hot' : 'cold');
 
+        // Use OpenWeatherMap's icon URL
+        const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+
         weatherCard.innerHTML = `
+            <img src="${iconUrl}" alt="${data.weather[0].description}">
             <h2>${data.main.temp.toFixed(1)}°${isCelsius ? 'C' : 'F'}</h2>
             <h4>${data.weather[0].main}</h4>
             <p>Humidity: ${data.main.humidity}%</p>
