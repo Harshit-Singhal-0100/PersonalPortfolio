@@ -21,10 +21,16 @@
             </form>
             <button id="tempUnitToggle" aria-label="Toggle temperature unit">°C / °F</button>
         </div>
+        <button id="geolocate" aria-label="Find my location">📍 Use My Location</button> <!-- Geolocation button -->
+        <div id="weather-alerts" role="alert"></div> <!-- Weather alerts -->
         <div class="weather-container" id="weather">
             <!-- Weather details will appear here -->
         </div>
         <div id="loading" class="loading" role="alert">Loading...</div> <!-- Loading animation -->
+        <div id="weather-news" class="news-container">
+            <!-- Weather news will appear here -->
+        </div>
+        <button id="share" aria-label="Share weather updates">Share Weather</button> <!-- Social sharing -->
     </main>
     <footer>
         <p>&copy; 2023 Weather App. All rights reserved.</p>
