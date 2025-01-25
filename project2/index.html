@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Application</title>
     <link rel="stylesheet" href="style.css"> 
-    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Add favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
     <header>
@@ -14,9 +14,10 @@
     <main>
         <div class="search-container">
             <form id="searchForm">
-                <input type="search" id="search" placeholder="Search by city name">
+                <input type="search" id="search" placeholder="Search by city name" required>
                 <button type="submit">Search</button>
             </form>
+            <button id="tempUnitToggle">Toggle °C / °F</button>
         </div>
         <div class="weather-container" id="weather">
             <!-- Weather details will appear here -->
@@ -26,4 +27,3 @@
     <script src="app.js"></script>
 </body>
 </html>
-
