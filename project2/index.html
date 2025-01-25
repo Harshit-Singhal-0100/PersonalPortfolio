@@ -3,38 +3,284 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Application</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Advanced Weather App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
 </head>
-<body>
-    <header>
-        <h1>Weather App</h1>
-    </header>
-    <main>
-        <div class="search-container">
-            <form id="searchForm" aria-label="Search for weather by city">
-                <input type="search" id="search" placeholder="Search by city name" required aria-label="City name">
-                <button type="submit" aria-label="Search">Search</button>
-            </form>
-            <button id="tempUnitToggle" aria-label="Toggle temperature unit">°C / °F</button>
+<body class="bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center min-h-screen">
+    <div class="weather-app bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-md">
+        <div class="weather-header bg-blue-600 text-white p-6 text-center">
+            <h1 class="text-2xl font-bold" id="location">Weather in New York</h1>
+            <p class="text-lg" id="date-time">Monday, 10:00 AM</p>
         </div>
-        <button id="geolocate" aria-label="Find my location">📍 Use My Location</button> <!-- Geolocation button -->
-        <div id="weather-alerts" role="alert"></div> <!-- Weather alerts -->
-        <div class="weather-container" id="weather">
-            <!-- Weather details will appear here -->
+        <div class="weather-info p-6 text-center">
+            <img alt="Weather icon" class="mx-auto mb-4" height="100" id="weather-icon" width="100"/>
+            <h2 class="text-4xl font-bold text-gray-800" id="temperature">25°C</h2>
+            <p class="text-lg text-gray-600" id="weather-description">Sunny</p>
         </div>
-        <div id="loading" class="loading" role="alert">Loading...</div> <!-- Loading animation -->
-        <div id="weather-news" class="news-container">
-            <!-- Weather news will appear here -->
+        <div class="weather-details flex justify-around bg-gray-50 p-6">
+            <div class="text-center">
+                <i class="fas fa-wind text-blue-500 text-2xl"></i>
+                <p class="text-lg text-gray-800" id="wind-speed">15 km/h</p>
+                <p class="text-sm text-gray-600">Wind</p>
+            </div>
+            <div class="text-center">
+                <i class="fas fa-tint text-blue-500 text-2xl"></i>
+                <p class="text-lg text-gray-800" id="humidity">60%</p>
+                <p class="text-sm text-gray-600">Humidity</p>
+            </div>
+            <div class="text-center">
+                <i class="fas fa-thermometer-half text-blue-500 text-2xl"></i>
+                <p class="text-lg text-gray-800" id="pressure">1015 hPa</p>
+                <p class="text-sm text-gray-600">Pressure</p>
+            </div>
         </div>
-        <button id="share" aria-label="Share weather updates">Share Weather</button> <!-- Social sharing -->
-    </main>
-    <footer>
-        <p>&copy; 2023 Weather App. All rights reserved.</p>
-    </footer>
-    <script src="app.js"></script>
+        <div class="forecast bg-gray-100 p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">3-Day Forecast</h3>
+            <div class="flex justify-between">
+                <div class="text-center">
+                    <p class="text-lg text-gray-800">Tue</p>
+                    <img alt="Weather icon" class="mx-auto" height="50" src="weather-icon-url" width="50"/>
+                    <p class="text-lg text-gray-800">22°C</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-lg text-gray-800">Wed</p>
+                    <img alt="Weather icon" class="mx-auto" height="50" src="weather-icon-url" width="50"/>
+                    <p class="text-lg text-gray-800">18°C</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-lg text-gray-800">Thu</p>
+                    <img alt="Weather icon" class="mx-auto" height="50" src="weather-icon-url" width="50"/>
+                    <p class="text-lg text-gray-800">20°C</p>
+                </div>
+            </div>
+        </div>
+        <div class="additional-info bg-gray-100 p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Additional Information</h3>
+            <div class="flex justify-between">
+                <div class="text-center">
+                    <i class="fas fa-sun text-yellow-500 text-2xl"></i>
+                    <p class="text-lg text-gray-800" id="uv-index">5</p>
+                    <p class="text-sm text-gray-600">UV Index</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-eye text-blue-500 text-2xl"></i>
+                    <p class="text-lg text-gray-800" id="visibility">10 km</p>
+                    <p class="text-sm text-gray-600">Visibility</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-cloud-rain text-blue-500 text-2xl"></i>
+                    <p class="text-lg text-gray-800" id="precipitation">0 mm</p>
+                    <p class="text-sm text-gray-600">Precipitation</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const API_key = 'd48ac3a26e9689cffe9f754a44678be1';
+        const form = document.querySelector("#searchForm");
+        const search = document.querySelector("#search");
+        const weather = document.querySelector("#weather");
+        const loading = document.querySelector("#loading");
+        const tempUnitToggle = document.querySelector("#tempUnitToggle");
+        const geolocateBtn = document.querySelector("#geolocate");
+        const weatherAlerts = document.querySelector("#weather-alerts");
+        const weatherNews = document.querySelector("#weather-news");
+        const shareBtn = document.querySelector("#share");
+
+        let isCelsius = true; // Default unit is Celsius
+
+        const toggleUnit = () => {
+            isCelsius = !isCelsius;
+            const currentCity = search.value;
+            if (currentCity) {
+                getWeather(currentCity); // Re-fetch weather data based on new unit
+            }
+        };
+
+        tempUnitToggle.addEventListener('click', toggleUnit);
+
+        const getWeather = async (city) => {
+            loading.style.display = 'block';  // Show loading animation
+            weather.innerHTML = ''; // Clear previous weather info
+            try {
+                const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_key}&units=${isCelsius ? 'metric' : 'imperial'}`;
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+
+                if (data.cod === "404") {
+                    weather.innerHTML = `<h2 style="color: red;">City not found. Please try again.</h2>`;
+                    loading.style.display = 'none';  // Hide loading
+                    return;
+                }
+
+                const weatherCard = document.createElement('div');
+                weatherCard.classList.add('weather-card');
+                weatherCard.setAttribute('data-temperature', data.main.temp > 30 ? 'hot' : 'cold');
+
+                // Use OpenWeatherMap's icon URL
+                const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+
+                weatherCard.innerHTML = `
+                    <img src="${iconUrl}" alt="${data.weather[0].description}">
+                    <h2>${data.main.temp.toFixed(1)}°${isCelsius ? 'C' : 'F'}</h2>
+                    <h4>${data.weather[0].main}</h4>
+                    <p>Humidity: ${data.main.humidity}%</p>
+                    <p>Wind Speed: ${data.wind.speed} m/s</p>
+                    <p>Pressure: ${data.main.pressure} hPa</p>
+                    <p>Visibility: ${data.visibility / 1000} km</p>
+                    <p>Sunrise: ${new Date(data.sys.sunrise * 1000).toLocaleTimeString()}</p>
+                    <p>Sunset: ${new Date(data.sys.sunset * 1000).toLocaleTimeString()}</p>
+                `;
+
+                weather.appendChild(weatherCard);
+                loading.style.display = 'none';  // Hide loading
+                fetchWeatherAlerts(city);
+                fetchWeatherNews();
+            } catch (error) {
+                weather.innerHTML = `<h2 style="color: red;">Error fetching weather data. Try again later.</h2>`;
+                loading.style.display = 'none';  // Hide loading
+                console.error('Error fetching weather:', error);
+            }
+        };
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            getWeather(search.value);
+        });
+
+        geolocateBtn.addEventListener('click', () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const { latitude, longitude } = position.coords;
+                    getWeatherByCoords(latitude, longitude);
+                });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        });
+
+        const getWeatherByCoords = async (lat, lon) => {
+            loading.style.display = 'block';  // Show loading animation
+            weather.innerHTML = ''; 
+        // previous weather info
+        try {
+            const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_key}&units=${isCelsius ? 'metric' : 'imperial'}`;
+            const response = await fetch(url);
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+
+            const weatherCard = document.createElement('div');
+            weatherCard.classList.add('weather-card');
+            weatherCard.setAttribute('data-temperature', data.main.temp > 30 ? 'hot' : 'cold');
+
+            // Use OpenWeatherMap's icon URL
+            const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+
+            weatherCard.innerHTML = `
+                <img src="${iconUrl}" alt="${data.weather[0].description}">
+                <h2>${data.main.temp.toFixed(1)}°${isCelsius ? 'C' : 'F'}</h2>
+                <h4>${data.weather[0].main}</h4>
+                <p>Humidity: ${data.main.humidity}%</p>
+                <p>Wind Speed: ${data.wind.speed} m/s</p>
+                <p>Pressure: ${data.main.pressure} hPa</p>
+                <p>Visibility: ${data.visibility / 1000} km</p>
+                <p>Sunrise: ${new Date(data.sys.sunrise * 1000).toLocaleTimeString()}</p>
+                <p>Sunset: ${new Date(data.sys.sunset * 1000).toLocaleTimeString()}</p>
+            `;
+
+            weather.appendChild(weatherCard);
+            loading.style.display = 'none';  // Hide loading
+        } catch (error) {
+            weather.innerHTML = `<h2 style="color: red;">Error fetching weather data. Try again later.</h2>`;
+            loading.style.display = 'none';  // Hide loading
+            console.error('Error fetching weather:', error);
+        }
+    };
+
+    const fetchWeatherAlerts = async (city) => {
+        // Fetch weather alerts for the city
+        try {
+            const url = `https://api.openweathermap.org/data/2.5/alerts?q=${city}&appid=${API_key}`;
+            const response = await fetch(url);
+            const data = await response.json();
+            
+            if (data.alerts && data.alerts.length > 0) {
+                weatherAlerts.innerHTML = data.alerts.map(alert => `
+                    <div class="alert">
+                        <h4>${alert.event}</h4>
+                        <p>${alert.description}</p>
+                        <p><strong>Start:</strong> ${new Date(alert.start * 1000).toLocaleTimeString()}</p>
+                        <p><strong>End:</strong> ${new Date(alert.end * 1000).toLocaleTimeString()}</p>
+                    </div>
+                `).join('');
+            } else {
+                weatherAlerts.innerHTML = `<p>No weather alerts for this location.</p>`;
+            }
+        } catch (error) {
+            weatherAlerts.innerHTML = `<p>Error fetching weather alerts.</p>`;
+            console.error('Error fetching weather alerts:', error);
+        }
+    };
+
+    const fetchWeatherNews = async () => {
+        // Fetch weather news
+        try {
+            const url = `https://newsapi.org/v2/everything?q=weather&apiKey=YOUR_NEWS_API_KEY`;
+            const response = await fetch(url);
+            const data = await response.json();
+
+            if (data.articles && data.articles.length > 0) {
+                weatherNews.innerHTML = data.articles.slice(0, 5).map(article => `
+                    <div class="news-article">
+                        <h4>${article.title}</h4>
+                        <p>${article.description}</p>
+                        <a href="${article.url}" target="_blank">Read more</a>
+                    </div>
+                `).join('');
+            } else {
+                weatherNews.innerHTML = `<p>No recent weather news available.</p>`;
+            }
+        } catch (error) {
+            weatherNews.innerHTML = `<p>Error fetching weather news.</p>`;
+            console.error('Error fetching weather news:', error);
+        }
+    };
+
+    shareBtn.addEventListener('click', () => {
+        if (navigator.share) {
+            const currentCity = search.value;
+            const weatherInfo = weather.innerText;
+            navigator.share({
+                title: 'Weather App',
+                text: `Weather in ${currentCity}: ${weatherInfo}`,
+                url: window.location.href
+            }).catch((error) => console.error('Error sharing:', error));
+        } else {
+            alert('Web Share API is not supported in this browser.');
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                const { latitude, longitude } = position.coords;
+                getWeatherByCoords(latitude, longitude);
+            });
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    });
+    </script>
 </body>
 </html>
