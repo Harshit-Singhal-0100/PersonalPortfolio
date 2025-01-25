@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-image: linear-gradient(to bottom, #85a4cb, #f9f9f9);
+    background: linear-gradient(to bottom right, #85a4cb, #f9f9f9);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -35,7 +35,7 @@ main {
     width: 100%;
     max-width: 500px;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 20px;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
     animation: slideUp 1s ease-out;
@@ -70,7 +70,7 @@ button {
     font-size: 16px;
     border: none;
     border-radius: 5px;
-    background-image: linear-gradient(to right, #4CAF50, #45a049);
+    background: linear-gradient(to right, #4CAF50, #45a049);
     color: white;
     cursor: pointer;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -78,7 +78,7 @@ button {
 }
 
 button:hover {
-    background-image: linear-gradient(to right, #45a049, #4CAF50);
+    background: linear-gradient(to right, #45a049, #4CAF50);
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -98,7 +98,7 @@ button:hover {
     align-items: center;
     padding: 20px;
     margin: 10px;
-    background-color: #fff;
+    background: linear-gradient(to bottom right, #ffffff, #e0e0e0);
     border-radius: 15px;
     box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
     transform: scale(0.95);
@@ -109,6 +109,12 @@ button:hover {
 .weather-card:hover {
     transform: translateY(-5px) scale(1.05);
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.weather-card img {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 10px;
 }
 
 .weather-card h2 {
