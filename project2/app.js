@@ -21,6 +21,7 @@ tempUnitToggle.addEventListener('click', toggleUnit);
 
 const getWeather = async (city) => {
     loading.style.display = 'block';  // Show loading animation
+    weather.innerHTML = ''; // Clear previous weather info
     try {
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_key}&units=${isCelsius ? 'metric' : 'imperial'}`;
         const response = await fetch(url);
