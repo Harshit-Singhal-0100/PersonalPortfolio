@@ -7,7 +7,6 @@ const tempUnitToggle = document.querySelector("#tempUnitToggle");
 
 let isCelsius = true; // Default unit is Celsius
 
-// Function to toggle between Celsius and Fahrenheit
 const toggleUnit = () => {
     isCelsius = !isCelsius;
     const currentCity = search.value;
@@ -16,7 +15,6 @@ const toggleUnit = () => {
     }
 };
 
-// Add event listener for unit toggle
 tempUnitToggle.addEventListener('click', toggleUnit);
 
 const getWeather = async (city) => {
@@ -25,6 +23,11 @@ const getWeather = async (city) => {
     try {
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_key}&units=${isCelsius ? 'metric' : 'imperial'}`;
         const response = await fetch(url);
+        
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
         const data = await response.json();
 
         if (data.cod === "404") {
@@ -33,13 +36,12 @@ const getWeather = async (city) => {
             return;
         }
 
-        // Set background color based on temperature
         const weatherCard = document.createElement('div');
         weatherCard.classList.add('weather-card');
-        weatherCard.setAttribute('data-temperature', data.main.temp > 30 ? 'hot' : 'cold'); // Temperature-based background color
+        weatherCard.setAttribute('data-temperature', data.main.temp > 30 ? 'hot' : 'cold');
 
         weatherCard.innerHTML = `
-            <h2>${data.main.temp}°${isCelsius ? 'C' : 'F'}</h2>
+            <h2>${data.main.temp.toFixed(1)}°${isCelsius ? 'C' : 'F'}</h2>
             <h4>${data.weather[0].main}</h4>
             <p>Humidity: ${data.main.humidity}%</p>
             <p>Wind Speed: ${data.wind.speed} m/s</p>
