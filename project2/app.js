@@ -1,4 +1,3 @@
-
 const API_key = 'd48ac3a26e9689cffe9f754a44678be1';
 const form = document.querySelector("#searchForm");
 const search = document.querySelector("#search");
