@@ -146,4 +146,4 @@ const fetchWeatherAlerts = async (city) => {
         } else {
             weatherAlerts.innerHTML = `<p>No weather alerts for this location.</p>`;
         }
-    } catch[_{{{CITATION{{{_1{](https://github.com/EleanorEllingson/web-dev/tree/b2f2a382e77a20fd6895677c8b8f402ac4bae352/7-bank-project%2F1-template-route%2Ftranslations%2FREADME.ko.md)[_{{{CITATION{{{_2{](https://github.com/Aschuuu/typer/tree/e36c91849d40df74ad53462554c52d80af890808/index.php)
+    } 
