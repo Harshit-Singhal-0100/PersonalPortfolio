@@ -1,4 +1,4 @@
-cnst API_key = 'd48ac3a26e9689cffe9f754a44678be1';
+const API_key = 'd48ac3a26e9689cffe9f754a44678be1';
 const form = document.querySelector("#searchForm");
 const search = document.querySelector("#search");
 const weather = document.querySelector("#weather");
@@ -21,6 +21,7 @@ tempUnitToggle.addEventListener('click', toggleUnit);
 
 const getWeather = async (city) => {
     loading.style.display = 'block';  // Show loading animation
+    weather.innerHTML = ''; // Clear previous weather info
     try {
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_key}&units=${isCelsius ? 'metric' : 'imperial'}`;
         const response = await fetch(url);
