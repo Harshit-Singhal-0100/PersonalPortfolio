@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Application</title>
     <link rel="stylesheet" href="style.css"> 
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Add favicon -->
 </head>
 <body>
     <header>
@@ -16,12 +17,13 @@
                 <input type="search" id="search" placeholder="Search by city name">
                 <button type="submit">Search</button>
             </form>
-            
         </div>
         <div class="weather-container" id="weather">
             <!-- Weather details will appear here -->
         </div>
+        <div id="loading" class="loading">Loading...</div> <!-- Loading animation -->
     </main>
     <script src="app.js"></script>
 </body>
 </html>
+
