@@ -6,8 +6,8 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    background: linear-gradient(to bottom right, #85a4cb, #f9f9f9);
+    font-family: 'Arial', sans-serif;
+    background-image: linear-gradient(to bottom, #85a4cb, #f9f9f9);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,11 +15,6 @@ body {
     height: 100vh;
     margin: 0;
     overflow: hidden;
-    transition: background 0.3s ease;
-}
-
-body.dark-theme {
-    background: linear-gradient(to bottom right, #2c3e50, #bdc3c7);
 }
 
 /* Header */
@@ -40,15 +35,11 @@ main {
     width: 100%;
     max-width: 500px;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.9);
     border-radius: 20px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+    background-image: linear-gradient(to bottom, #347ad669, #c56969b6);
     animation: slideUp 1s ease-out;
-    transition: background 0.3s ease;
-}
-
-body.dark-theme main {
-    background: rgba(44, 62, 80, 0.9);
 }
 
 /* Search container */
@@ -57,22 +48,16 @@ body.dark-theme main {
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
-    gap: 10px;
 }
 
 input[type="search"] {
     flex: 1;
-    padding: 15px;
+    padding: 20px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
     width: 90%;
-    transition: border-color 0.3s;
-}
-
-input[type="search"]:focus {
-    border-color: #4CAF50;
-    outline: none;
+    margin-right: 10px;
 }
 
 button {
@@ -80,7 +65,7 @@ button {
     font-size: 16px;
     border: none;
     border-radius: 5px;
-    background: linear-gradient(to right, #4CAF50, #45a049);
+    background-image: linear-gradient(to right, #4CAF50, #45a049);
     color: white;
     cursor: pointer;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -88,17 +73,8 @@ button {
 }
 
 button:hover {
-    background: linear-gradient(to right, #45a049, #4CAF50);
+    background-image: linear-gradient(to right, #45a049, #4CAF50);
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Geolocation button */
-#geolocate {
-    background: linear-gradient(to right, #f39c12, #e67e22);
-}
-
-#geolocate:hover {
-    background: linear-gradient(to right, #e67e22, #f39c12);
 }
 
 /* Weather container */
@@ -117,20 +93,12 @@ button:hover {
     align-items: center;
     padding: 20px;
     margin: 10px;
-    background: linear-gradient(to bottom right, #ffffff, #e0e0e0);
+    background-color: #fff;
     border-radius: 15px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
     transform: scale(0.95);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     animation: bounceIn 0.6s ease-out;
-}
-
-.weather-card.hot {
-    background: linear-gradient(to bottom right, #ff6347, #ffd1c1);
-}
-
-.weather-card.cold {
-    background: linear-gradient(to bottom right, #87ceeb, #d1ecff);
 }
 
 .weather-card:hover {
@@ -139,21 +107,21 @@ button:hover {
 }
 
 .weather-card img {
-    width: 100px; /* Increased size for better visibility */
-    height: 100px;
+    width: 70px;
+    height: 70px;
     margin-bottom: 10px;
 }
 
 .weather-card h2 {
     margin-bottom: 5px;
-    font-size: 32px; /* Increased font size */
+    font-size: 28px;
     font-weight: bold;
     color: #333;
 }
 
 .weather-card h4 {
     margin-bottom: 10px;
-    font-size: 20px; /* Increased font size */
+    font-size: 18px;
     color: #555;
 }
 
@@ -182,15 +150,6 @@ button:hover {
     100% {
         opacity: 0.6;
     }
-}
-
-/* Footer */
-footer {
-    margin-top: auto;
-    padding: 10px;
-    text-align: center;
-    font-size: 14px;
-    color: #777;
 }
 
 /* Responsive Design for smaller screens */
@@ -245,17 +204,4 @@ footer {
     100% {
         transform: scale(1);
     }
-}
-
-/* Dark theme for weather cards */
-body.dark-theme .weather-card {
-    background: linear-gradient(to bottom right, #34495e, #2c3e50);
-}
-
-body.dark-theme .weather-card.hot {
-    background: linear-gradient(to bottom right, #e74c3c, #c0392b);
-}
-
-body.dark-theme .weather-card.cold {
-    background: linear-gradient(to bottom right, #3498db, #2980b9);
 }
