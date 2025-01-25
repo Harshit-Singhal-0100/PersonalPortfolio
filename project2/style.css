@@ -6,11 +6,11 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Roboto', sans-serif;
     background: linear-gradient(to bottom right, #85a4cb, #f9f9f9);
     display: flex;
     flex-direction: column;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
@@ -37,7 +37,7 @@ main {
     padding: 20px;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 20px;
-    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
     animation: slideUp 1s ease-out;
 }
 
@@ -100,7 +100,7 @@ button:hover {
     margin: 10px;
     background: linear-gradient(to bottom right, #ffffff, #e0e0e0);
     border-radius: 15px;
-    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
     transform: scale(0.95);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     animation: bounceIn 0.6s ease-out;
@@ -112,21 +112,21 @@ button:hover {
 }
 
 .weather-card img {
-    width: 70px;
-    height: 70px;
+    width: 100px; /* Increased size for better visibility */
+    height: 100px;
     margin-bottom: 10px;
 }
 
 .weather-card h2 {
     margin-bottom: 5px;
-    font-size: 28px;
+    font-size: 32px; /* Increased font size */
     font-weight: bold;
     color: #333;
 }
 
 .weather-card h4 {
     margin-bottom: 10px;
-    font-size: 18px;
+    font-size: 20px; /* Increased font size */
     color: #555;
 }
 
