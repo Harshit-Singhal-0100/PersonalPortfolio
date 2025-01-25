@@ -1,11 +1,12 @@
+
 /* Resetting default styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  body {
+}
+
+body {
     font-family: 'Arial', sans-serif;
     background-image: linear-gradient(to bottom, #85a4cb, #f9f9f9);
     display: flex;
@@ -14,20 +15,24 @@
     align-items: center;
     height: 100vh;
     margin: 0;
-  }
-  
-  header {
+    overflow: hidden;
+}
+
+/* Header */
+header {
     text-align: center;
     margin-bottom: 20px;
-  }
-  
-  h1 {
-    font-size: 2.5rem;
+    animation: fadeIn 1s ease-out;
+}
+
+h1 {
+    font-size: 3rem;
     color: #fff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  }
-  
-  main {
+}
+
+/* Main container */
+main {
     width: 100%;
     max-width: 500px;
     padding: 20px;
@@ -35,18 +40,18 @@
     border-radius: 20px;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
     background-image: linear-gradient(to bottom, #347ad669, #c56969b6);
-  }
-  
-  .search-container {
+    animation: slideUp 1s ease-out;
+}
+
+/* Search container */
+.search-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
-   
-    
-  }
-  
-  input[type="search"] {
+}
+
+input[type="search"] {
     flex: 1;
     padding: 20px;
     font-size: 16px;
@@ -54,33 +59,36 @@
     border-radius: 5px;
     width: 90%;
     margin-right: 10px;
-    
-  }
-  
-  button {
-    padding: 10px 20px;
-    margin-top: 2%;
+}
+
+button {
+    padding: 12px 25px;
     font-size: 16px;
     border: none;
     border-radius: 5px;
-    background-color: #4CAF50;
+    background-image: linear-gradient(to right, #4CAF50, #45a049);
     color: white;
     cursor: pointer;
-    transition: all 0.3s ease;
-    width: auto;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  .weather-container {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background-image: linear-gradient(to right, #45a049, #4CAF50);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Weather container */
+.weather-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-  }
-  
-  .weather-card {
+    gap: 20px;
+    padding-top: 20px;
+    animation: fadeIn 1s ease-out;
+}
+
+.weather-card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -89,36 +97,113 @@
     background-color: #fff;
     border-radius: 15px;
     box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+    transform: scale(0.95);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .weather-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.15);
-  }
-  
-  .weather-card img {
+    animation: bounceIn 0.6s ease-out;
+}
+
+.weather-card:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.weather-card img {
     width: 70px;
     height: 70px;
     margin-bottom: 10px;
-  }
-  
-  .weather-card h2 {
+}
+
+.weather-card h2 {
     margin-bottom: 5px;
     font-size: 28px;
     font-weight: bold;
     color: #333;
-  }
-  
-  .weather-card h4 {
+}
+
+.weather-card h4 {
     margin-bottom: 10px;
     font-size: 18px;
     color: #555;
-  }
-  
-  @media screen and (max-width: 600px) {
-    input[type="search"] {
-      width: 80%;
+}
+
+.weather-card p {
+    font-size: 16px;
+    color: #777;
+}
+
+/* Loading spinner */
+.loading {
+    display: none;
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
     }
-  }
-  
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.6;
+    }
+}
+
+/* Responsive Design for smaller screens */
+@media screen and (max-width: 600px) {
+    input[type="search"] {
+        width: 70%;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .weather-card {
+        margin: 5px;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
