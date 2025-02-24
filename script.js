@@ -61,3 +61,18 @@ const typed = new Typed('.multiple-text', {
     loop: true
 });
 
+// for theme changing
+const colorPicker = document.getElementById('colorPicker');
+
+
+colorPicker.addEventListener('input', function() {
+
+    const selectedColor = colorPicker.value;
+
+
+    document.documentElement.style.setProperty('--main-color', selectedColor);
+    
+   
+    document.documentElement.style.setProperty('--bg-color', selectedColor);
+    document.documentElement.style.setProperty('--second-bg-color', selectedColor);
+});
